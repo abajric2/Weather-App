@@ -1,0 +1,54 @@
+.weather-display {
+    flex: 1;
+    padding: 20px;
+    width: 100%;
+    color: white;
+    display: flex; 
+    justify-content: center; 
+    align-items: flex-start;
+
+}
+
+.weather-display.day {
+    background: linear-gradient(to bottom, #38b4e5, #d1c02da0);
+}
+
+.weather-display.night {
+    background: linear-gradient(to bottom, #003c77cb, #2c3e509d);
+}
+
+.location-info,
+.temperature-info,
+.main-info-container {
+    display: flex;
+    align-items: center;
+}
+
+.location-icon,
+.city-name {
+    margin-right: 10px;
+    font-size: 40px;
+}
+
+.location-container,
+.temperature-container {
+    text-align: left;
+}
+
+.location-container {
+    margin-right: 200px;
+}
+
+.weather-description {
+    font-size: 25px;
+    margin: 0;
+}
+
+.feels-like {
+    font-size: 20px;
+    margin: 0;
+}
+
+.current-temperature {
+    font-size: 40px;
+}

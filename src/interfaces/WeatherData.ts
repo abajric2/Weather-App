@@ -6,4 +6,7 @@ export interface WeatherData {
     description: string;
     windSpeed: number;
     rainVolume: number | null;
+    sunrise: number;
+    sunset: number;
+    icon: string;
 }

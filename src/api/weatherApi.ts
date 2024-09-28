@@ -34,6 +34,9 @@ const mapWeatherData = (data: any): WeatherData => ({
     description: data.weather[0].description,
     windSpeed: data.wind.speed,
     rainVolume: data.rain ? data.rain['1h'] : null,
+    sunrise: data.sys.sunrise,
+    sunset: data.sys.sunset,
+    icon: data.weather[0].icon,
 });
 
 export const fetchWeatherData = async (city: string): Promise<WeatherData> => {
@@ -47,7 +50,7 @@ export const fetchWeatherData = async (city: string): Promise<WeatherData> => {
         const weatherData = await fetchWeatherDataFromCoordinates(lat, lon);
         const keyWeatherData = mapWeatherData(weatherData)
         console.info(`Info: Weather data received from API for "${city}": `, keyWeatherData)
-        
+
         return keyWeatherData;
     } catch (error) {
         console.error(error);
