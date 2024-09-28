@@ -5,8 +5,10 @@ export interface WeatherData {
     pressure: number;
     description: string;
     windSpeed: number;
-    rainVolume: number | null;
     sunrise: number;
     sunset: number;
     icon: string;
+    visibility: number;
+    cloudiness: number;
+    windDirection: number;
 }

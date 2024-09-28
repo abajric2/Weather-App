@@ -33,10 +33,12 @@ const mapWeatherData = (data: any): WeatherData => ({
     pressure: data.main.pressure,
     description: data.weather[0].description,
     windSpeed: data.wind.speed,
-    rainVolume: data.rain ? data.rain['1h'] : null,
     sunrise: data.sys.sunrise,
     sunset: data.sys.sunset,
     icon: data.weather[0].icon,
+    visibility: data.visibility,
+    windDirection: data.wind.deg,
+    cloudiness: data.clouds.all,
 });
 
 export const fetchWeatherData = async (city: string): Promise<WeatherData> => {
