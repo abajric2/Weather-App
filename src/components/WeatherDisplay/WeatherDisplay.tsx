@@ -3,7 +3,8 @@ import { WeatherDisplayProps } from '../../interfaces/WeatherDisplayProps';
 import './WeatherDisplay.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot, faDroplet, faEye, faWind, faTachometerAlt, faCloud, faCompass } from '@fortawesome/free-solid-svg-icons';
-const dayBackground = '/videos/daySky.mp4'; // Direktna putanja
+
+const dayBackground = '/videos/daySky.mp4';
 const nightBackground = '/videos/nightSky.mp4';
 
 
