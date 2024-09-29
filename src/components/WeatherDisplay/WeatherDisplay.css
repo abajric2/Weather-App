@@ -2,18 +2,18 @@
     flex: 1;
     padding: 0;
     width: 100%;
-    color: white;
     display: block; 
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .weather-display.day {
-    background: linear-gradient(to bottom, #38b4e5, #d1c02da0);
+    color: rgb(5, 5, 84);
 }
 
 .weather-display.night {
-    background: linear-gradient(to bottom, #003c77cb, #2c3e509d);
+    color: white;
 }
 
 .location-info,
@@ -69,6 +69,7 @@
     border-radius: 10px; 
     padding: 10px 10px 10px 20px;
     font-size: 18px;
+    transition: transform 0.3s ease;
 }
 
 .weather-info-item.day {
@@ -86,4 +87,25 @@
 
 .info-caption p {
     font-weight: bold;
+}
+
+.weather-info-item:hover {
+    transform: scale(1.1); 
+}
+.background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1; 
+}
+
+.background-video.day {
+    opacity: 0.5;
+}
+
+.background-video.night {
+    opacity: 0.8;
 }
