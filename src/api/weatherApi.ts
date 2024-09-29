@@ -47,8 +47,8 @@ export const fetchWeatherData = async (city: string): Promise<WeatherData> => {
         if (geoData.length === 0) {
             throw new Error(`Error: City with name "${city}" not found`);
         }
-
         const { lat, lon } = geoData[0];
+        
         const weatherData = await fetchWeatherDataFromCoordinates(lat, lon);
         const keyWeatherData = mapWeatherData(weatherData)
         console.info(`Info: Weather data received from API for "${city}": `, keyWeatherData)
