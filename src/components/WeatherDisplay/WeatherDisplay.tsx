@@ -7,6 +7,14 @@ import BackgroundVideo from '../BackgroundVideo/BackgroundVideo';
 
 const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ weatherData, city }) => {
     const [isDay, setIsDay] = useState(false);
+    const weatherInfoItems = [
+        { icon: faDroplet, label: 'Humidity', value: `${weatherData.humidity}%` },
+        { icon: faEye, label: 'Visibility', value: `${weatherData.visibility / 1000} km` },
+        { icon: faWind, label: 'Wind speed', value: `${Math.round(weatherData.windSpeed)} km/h` },
+        { icon: faTachometerAlt, label: 'Pressure', value: `${weatherData.pressure} hPa` },
+        { icon: faCloud, label: 'Cloudiness', value: `${weatherData.cloudiness}%` },
+        { icon: faCompass, label: 'Wind direction', value: `${weatherData.windDirection}°` },
+    ];
 
     useEffect(() => {
         const isDayTime = (): boolean => {
@@ -19,12 +27,12 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ weatherData, city }) =>
 
     return (
         <div className={`weather-display ${isDay ? 'day' : 'night'}`}>
-            <BackgroundVideo isDay={isDay}/>
+            <BackgroundVideo isDay={isDay} />
             <div className='main-info-container'>
                 <div className='location-container'>
                     <div className="location-info">
                         <h2 className="city-name">{city}</h2>
-                        <FontAwesomeIcon icon={faLocationDot} style={isDay ? {color: 'rgb(5, 5, 84)'}: { color: "#ffffff" }} className="location-icon" />
+                        <FontAwesomeIcon icon={faLocationDot} style={isDay ? { color: 'rgb(5, 5, 84)' } : { color: "#ffffff" }} className="location-icon" />
                     </div>
                     <p className='weather-description'>{weatherData.description}</p>
                 </div>
@@ -37,48 +45,14 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ weatherData, city }) =>
                 </div>
             </div>
             <div className='weather-info-grid'>
-                <div className={`weather-info-item ${isDay ? 'day' : 'night'}`}>
-                    <div className='info-caption'>
-                        <FontAwesomeIcon icon={faDroplet} className='weather-info-icon' />
-                        <p>Humidity</p>
-                    </div>
-                    <p>{weatherData.humidity}%</p>
-                </div>
-                <div className={`weather-info-item ${isDay ? 'day' : 'night'}`}>
-                    <div className='info-caption'>
-                        <FontAwesomeIcon icon={faEye} className='weather-info-icon' />
-                        <p>Visibility</p>
-                    </div>
-                    <p>{weatherData.visibility / 1000} km</p>
-                </div>
-                <div className={`weather-info-item ${isDay ? 'day' : 'night'}`}>
-                    <div className='info-caption'>
-                        <FontAwesomeIcon icon={faWind} className='weather-info-icon' />
-                        <p>Wind speed</p>
-                    </div>
-                    <p>{Math.round(weatherData.windSpeed)} km/h</p>
-                </div>
-                <div className={`weather-info-item ${isDay ? 'day' : 'night'}`}>
-                    <div className='info-caption'>
-                        <FontAwesomeIcon icon={faTachometerAlt} className='weather-info-icon' />
-                        <p>Pressure</p>
-                    </div>
-                    <p>{weatherData.pressure} hPa</p>
-                </div>
-                <div className={`weather-info-item ${isDay ? 'day' : 'night'}`}>
-                    <div className='info-caption'>
-                        <FontAwesomeIcon icon={faCloud} className='weather-info-icon' />
-                        <p>Cloudiness</p>
-                    </div>
-                    <p>{weatherData.cloudiness}%</p>
-                </div>
-                <div className={`weather-info-item ${isDay ? 'day' : 'night'}`}>
-                    <div className='info-caption'>
-                        <FontAwesomeIcon icon={faCompass} className='weather-info-icon' />
-                        <p>Wind direction</p>
-                    </div>
-                    <p>{weatherData.windDirection}°</p>
-                </div>
+                {weatherInfoItems.map((item, index) => (
+                    <div key={index} className={`weather-info-item ${isDay ? 'day' : 'night'}`}>
+                        <div className='info-item-caption'>
+                            <FontAwesomeIcon icon={item.icon} className='info-item-icon' />
+                            <p>{item.label}</p>
+                        </div>
+                        <p>{item.value}</p>
+                    </div>))}
             </div>
         </div>
     );
