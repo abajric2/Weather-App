@@ -2,10 +2,9 @@
     flex: 1;
     padding: 0;
     width: 100%;
-    display: block; 
-    justify-content: center;
-    align-items: center;
+    display: block;
     position: relative;
+    margin-bottom: 20px;
 }
 
 .weather-display.day {
@@ -18,13 +17,15 @@
 
 .location-info,
 .temperature-info,
-.main-info-container,
 .info-item-caption {
     display: flex;
     align-items: center;
 }
+
 .weather-display .main-info-container {
     margin-bottom: 90px;
+    display: flex;
+    align-items: center;
     justify-content: center;
 }
 
@@ -43,11 +44,7 @@
     margin-right: 200px;
 }
 
-.weather-description {
-    font-size: 20px;
-    margin: 0;
-}
-
+.weather-description,
 .feels-like {
     font-size: 20px;
     margin: 0;
@@ -60,7 +57,7 @@
 .weather-info-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr); 
-    gap: 40px; 
+    gap: 40px;
     width: 40%; 
     margin: 0 auto;
 }
@@ -70,6 +67,10 @@
     padding: 10px 10px 10px 20px;
     font-size: 18px;
     transition: transform 0.3s ease;
+}
+
+.weather-info-item:hover {
+    transform: scale(1.1); 
 }
 
 .weather-info-item.day {
@@ -87,8 +88,4 @@
 
 .info-item-caption p {
     font-weight: bold;
-}
-
-.weather-info-item:hover {
-    transform: scale(1.1); 
 }
