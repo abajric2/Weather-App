@@ -8,7 +8,7 @@ const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
 const GEO_API_URL = process.env.REACT_APP_GEO_API_URL || 'http://api.openweathermap.org/geo/1.0/direct';
 const WEATHER_API_URL = process.env.REACT_APP_WEATHER_API_URL || 'https://api.openweathermap.org/data/2.5/weather';
 
-const fetchGeoData = async (city: string): Promise<GeoData> => {
+const fetchGeoData = async (city: string): Promise<GeoData | null> => {
     const response = await axios.get(GEO_API_URL, {
         params: {
             q: city,
@@ -18,7 +18,8 @@ const fetchGeoData = async (city: string): Promise<GeoData> => {
     });
 
     if (response.data.length === 0) {
-        throw new Error(`ERROR: City with name "${city}" not found`);
+        console.warn(`WARN: City with name "${city}" not found`)
+        return null;
     }
 
     const keyGeoData = mapGeoData(response.data[0])
@@ -27,7 +28,7 @@ const fetchGeoData = async (city: string): Promise<GeoData> => {
     return keyGeoData;
 };
 
-const fetchWeatherDataFromCoordinates = async (geoData: GeoData): Promise<WeatherData> => {
+const fetchWeatherDataFromCoordinates = async (geoData: GeoData): Promise<WeatherData | null> => {
     const response = await axios.get(WEATHER_API_URL, {
         params: {
             lat: geoData.lat,
@@ -38,7 +39,8 @@ const fetchWeatherDataFromCoordinates = async (geoData: GeoData): Promise<Weathe
     });
 
     if (response.data.length === 0) {
-        throw new Error(`ERROR: Weather data for "${geoData.city}" not found`);
+        console.warn(`WARN: Weather data for "${geoData.city}" not found`);
+        return null;
     }
 
     const keyWeatherData = mapWeatherData(response.data)
@@ -47,13 +49,14 @@ const fetchWeatherDataFromCoordinates = async (geoData: GeoData): Promise<Weathe
     return keyWeatherData;
 };
 
-export const fetchWeatherData = async (city: string): Promise<WeatherData> => {
+export const fetchWeatherData = async (city: string): Promise<WeatherData | null> => {
     try {
-        if (!city || city.trim().length === 0) {
+        if (city && city.trim().length === 0) {
             throw new Error("ERROR: City name must not be empty");
         }
 
         const geoData = await fetchGeoData(city);
+        if(!geoData) return null;
         const weatherData = await fetchWeatherDataFromCoordinates(geoData);
 
         return weatherData;

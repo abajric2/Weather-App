@@ -17,9 +17,9 @@ function App() {
     const fetchWeather = async () => {
       if (city) {
         try {
+          setError(null)
           const data = await fetchWeatherData(city);
           setWeatherData(data);
-          setError(null)
         } catch (error) {
           const errorMessage = error instanceof Error ? error.message : 'ERROR: An unknown error occurred';
           setWeatherData(null);
@@ -36,8 +36,14 @@ function App() {
       <Navbar>
         <Search onSearch={setCity} />
       </Navbar>
-      {weatherData && <WeatherDisplay weatherData={weatherData} city={city} />}
-      {error &&
+      {!error ?
+        (
+          weatherData ?
+            <WeatherDisplay weatherData={weatherData} city={city} /> :
+            <div className='no-results'>
+              <h1>No results for "{city}"</h1>
+            </div>
+        ) :
         <div className='error-display'>
           <div className='error-title'>
             <FontAwesomeIcon className='error-icon' icon={faTriangleExclamation} />
