@@ -5,9 +5,11 @@ import { mapGeoData } from "../utils/geoDataMapper";
 import axios from "axios";
 
 const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
+const GEO_API_URL = process.env.REACT_APP_GEO_API_URL || 'http://api.openweathermap.org/geo/1.0/direct';
+const WEATHER_API_URL = process.env.REACT_APP_WEATHER_API_URL || 'https://api.openweathermap.org/data/2.5/weather';
 
 const fetchGeoData = async (city: string): Promise<GeoData> => {
-    const response = await axios.get(`http://api.openweathermap.org/geo/1.0/direct`, {
+    const response = await axios.get(GEO_API_URL, {
         params: {
             q: city,
             limit: 1,
@@ -16,17 +18,17 @@ const fetchGeoData = async (city: string): Promise<GeoData> => {
     });
 
     if (response.data.length === 0) {
-        throw new Error(`Error: City with name "${city}" not found`);
+        throw new Error(`ERROR: City with name "${city}" not found`);
     }
 
     const keyGeoData = mapGeoData(response.data[0])
-    console.info(`Info: Geo data received from API for "${city}": `, keyGeoData)
+    console.info(`INFO: Geo data received from API for "${city}": `, keyGeoData)
 
     return keyGeoData;
 };
 
 const fetchWeatherDataFromCoordinates = async (geoData: GeoData): Promise<WeatherData> => {
-    const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather`, {
+    const response = await axios.get(WEATHER_API_URL, {
         params: {
             lat: geoData.lat,
             lon: geoData.lon,
@@ -35,20 +37,28 @@ const fetchWeatherDataFromCoordinates = async (geoData: GeoData): Promise<Weathe
         }
     });
 
-    return response.data;
+    if (response.data.length === 0) {
+        throw new Error(`ERROR: Weather data for "${geoData.city}" not found`);
+    }
+
+    const keyWeatherData = mapWeatherData(response.data)
+    console.info(`INFO: Weather data received from API for "${geoData.city}": `, keyWeatherData)
+
+    return keyWeatherData;
 };
 
 export const fetchWeatherData = async (city: string): Promise<WeatherData> => {
     try {
+        if (!city || city.trim().length === 0) {
+            throw new Error("ERROR: City name must not be empty");
+        }
+
         const geoData = await fetchGeoData(city);
         const weatherData = await fetchWeatherDataFromCoordinates(geoData);
-        const keyWeatherData = mapWeatherData(weatherData)
 
-        console.info(`Info: Weather data received from API for "${city}": `, keyWeatherData)
-
-        return keyWeatherData;
+        return weatherData;
     } catch (error) {
-        console.error(`Error: Failed to fetch weather data for "${city}":`, error);
+        console.error(`ERROR: An error occured while trying to fetch weather data for "${city}":`, error);
         throw error;
     }
 };
