@@ -92,20 +92,3 @@
 .weather-info-item:hover {
     transform: scale(1.1); 
 }
-.background-video {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    object-fit: cover;
-    z-index: -1; 
-}
-
-.background-video.day {
-    opacity: 0.5;
-}
-
-.background-video.night {
-    opacity: 0.98;
-}

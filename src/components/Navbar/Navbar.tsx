@@ -1,6 +1,6 @@
 import React from 'react';
 import './Navbar.css';
-import { NavbarProps } from '../../interfaces/NavbarProps';
+import { NavbarProps } from '../../interfaces/props/NavbarProps';
 
 const Navbar: React.FC<NavbarProps> = ({ children }) => {
   return (

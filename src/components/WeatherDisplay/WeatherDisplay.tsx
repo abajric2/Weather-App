@@ -1,43 +1,25 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { WeatherDisplayProps } from '../../interfaces/WeatherDisplayProps';
+import React, { useEffect, useState } from 'react'
+import { WeatherDisplayProps } from '../../interfaces/props/WeatherDisplayProps';
 import './WeatherDisplay.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot, faDroplet, faEye, faWind, faTachometerAlt, faCloud, faCompass } from '@fortawesome/free-solid-svg-icons';
-
-const dayBackground = '/videos/daySky.mp4';
-const nightBackground = '/videos/nightSky.mp4';
-
+import BackgroundVideo from '../BackgroundVideo/BackgroundVideo';
 
 const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ weatherData, city }) => {
     const [isDay, setIsDay] = useState(false);
-    const videoRef = useRef<HTMLVideoElement | null>(null);
 
     useEffect(() => {
-        const isDayTime = () => {
+        const isDayTime = (): boolean => {
             const currentTime = Math.floor(Date.now() / 1000);
             return currentTime >= weatherData.sunrise && currentTime < weatherData.sunset;
         }
+
         setIsDay(isDayTime());
-
-        if (videoRef.current) {
-            videoRef.current.src = isDay ? dayBackground : nightBackground;
-            videoRef.current.load(); 
-
-            const handleCanPlayThrough = () => {
-                videoRef.current?.play(); 
-                videoRef.current?.removeEventListener('canplaythrough', handleCanPlayThrough); 
-            };
-
-            videoRef.current.addEventListener('canplaythrough', handleCanPlayThrough);
-        }
-    }, [weatherData, isDay]);
+    }, [weatherData]);
 
     return (
         <div className={`weather-display ${isDay ? 'day' : 'night'}`}>
-            <video ref={videoRef} autoPlay muted loop className={`background-video ${isDay ? 'day' : 'night'}`}>
-                <source src={isDay ? dayBackground : nightBackground} type="video/mp4" />
-                Your browser does not support the video tag.
-            </video>
+            <BackgroundVideo isDay={isDay}/>
             <div className='main-info-container'>
                 <div className='location-container'>
                     <div className="location-info">

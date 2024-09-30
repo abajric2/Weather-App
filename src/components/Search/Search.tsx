@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Search.css'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { SearchProps } from '../../interfaces/SearchProps';
+import { SearchProps } from '../../interfaces/props/SearchProps';
 
 const Search: React.FC<SearchProps> = ({ onSearch }) => {
     const [inputValue, setInputValue] = useState<string>('');
