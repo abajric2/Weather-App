@@ -3,7 +3,7 @@ import './App.css';
 import { WeatherData } from './interfaces/WeatherData';
 import Search from './components/Search/Search';
 import { fetchWeatherData } from './api/weatherApi';
-import WeatherDisplay from './components/WeatherDisplay/WeatherDisplay';
+import WeatherDisplay from './components/WeatherDisplay/WeatherInfo';
 import Navbar from './components/Navbar/Navbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';

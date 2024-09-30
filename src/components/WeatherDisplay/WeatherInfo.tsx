@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { WeatherDisplayProps } from '../../interfaces/props/WeatherDisplayProps';
-import './WeatherDisplay.css'
+import { WeatherDisplayProps } from '../../interfaces/props/WeatherInfoProps';
+import './WeatherInfo.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot, faDroplet, faEye, faWind, faTachometerAlt, faCloud, faCompass } from '@fortawesome/free-solid-svg-icons';
 import BackgroundVideo from '../BackgroundVideo/BackgroundVideo';
