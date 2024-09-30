@@ -6,20 +6,20 @@ import { fetchWeatherData } from './api/weatherApi';
 import WeatherDisplay from './components/WeatherDisplay/WeatherInfo';
 import Navbar from './components/Navbar/Navbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
+import { faTriangleExclamation, faFrown } from '@fortawesome/free-solid-svg-icons';
 import { MoonLoader } from 'react-spinners';
 
 function App() {
   const [city, setCity] = useState<string>('Sarajevo');
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [error, setError] = useState<string | null>(null)
-  const [isLoading, setLoading] = useState<boolean>(false)
+  const [isLoading, setIsLoading] = useState<boolean>(false)
 
   useEffect(() => {
     const fetchWeather = async () => {
       if (city) {
         try {
-          setLoading(true)
+          setIsLoading(true)
           setError(null)
           const data = await fetchWeatherData(city);
           setWeatherData(data);
@@ -28,7 +28,7 @@ function App() {
           setWeatherData(null);
           setError(errorMessage);
         } finally {
-          setLoading(false);
+          setIsLoading(false);
         }
       }
     }
@@ -50,7 +50,8 @@ function App() {
       {!isLoading && !error && (
         weatherData ?
           <WeatherDisplay weatherData={weatherData} city={city} /> :
-          <div className="result-info">
+          <div className="no-result-info">
+            <FontAwesomeIcon icon={faFrown} className="no-result-icon" />
             <h1>No results for "{city}"</h1>
           </div>
       )}

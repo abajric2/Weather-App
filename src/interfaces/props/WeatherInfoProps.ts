@@ -1,6 +1,6 @@
 import { WeatherData } from "../WeatherData";
 
-export interface WeatherDisplayProps {
+export interface WeatherInfoProps {
     weatherData: WeatherData,
     city: string
 }

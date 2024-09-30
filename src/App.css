@@ -3,33 +3,63 @@
   flex-direction: column;
 }
 
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+  flex-direction: column;
+}
+
+.loader p {
+  font-size: 20px;
+  margin-top: 10px;
+  color: #555;
+}
+
+.no-result-info {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.no-result-icon {
+  font-size: 50px;
+  color: #ccc;
+}
+
+.no-result-info h1 {
+  font-size: 24px;
+  color: #555;
+}
+
 .error-display {
+  text-align: center;
+  background-color: rgba(255, 0, 0, 0.1);
   border: 2px solid red;
-  margin: 50px auto 0 auto;
   padding: 20px;
   border-radius: 10px;
+  margin: 50px auto;
+  width: 60%;
 }
 
 .error-title {
   display: flex;
+  justify-content: center;
   align-items: center;
+  gap: 10px;
 }
 
 .error-icon {
+  font-size: 40px;
   color: red;
-  font-size: 25px;
-  margin-right: 10px;
 }
 
-.result-info {
-  margin: 0 auto;
+.error-title h1 {
+  font-size: 32px;
+  color: red;
 }
 
-.loader {
-  display: block;
-  margin: 200px auto 0 auto;
-}
-
-.loader p {
-  text-align: center;
+.error-display p {
+  color: #333;
+  font-size: 18px;
 }

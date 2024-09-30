@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { WeatherDisplayProps } from '../../interfaces/props/WeatherInfoProps';
+import { WeatherInfoProps } from '../../interfaces/props/WeatherInfoProps';
 import './WeatherInfo.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot, faDroplet, faEye, faWind, faTachometerAlt, faCloud, faCompass } from '@fortawesome/free-solid-svg-icons';
 import BackgroundVideo from '../BackgroundVideo/BackgroundVideo';
 
-const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ weatherData, city }) => {
+const WeatherDisplay: React.FC<WeatherInfoProps> = ({ weatherData, city }) => {
     const [isDay, setIsDay] = useState(false);
     const weatherInfoItems = [
         { icon: faDroplet, label: 'Humidity', value: `${weatherData.humidity}%` },
