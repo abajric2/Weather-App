@@ -2,3 +2,21 @@
   display: flex;
   flex-direction: column;
 }
+
+.error-display {
+  border: 2px solid red;
+  margin: 50px auto 0 auto;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.error-title {
+  display: flex;
+  align-items: center;
+}
+
+.error-icon {
+  color: red;
+  font-size: 25px;
+  margin-right: 10px;
+}

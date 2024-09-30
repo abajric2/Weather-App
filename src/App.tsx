@@ -5,6 +5,8 @@ import Search from './components/Search/Search';
 import { fetchWeatherData } from './api/weatherApi';
 import WeatherDisplay from './components/WeatherDisplay/WeatherDisplay';
 import Navbar from './components/Navbar/Navbar';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
   const [city, setCity] = useState<string>('Sarajevo');
@@ -34,7 +36,16 @@ function App() {
       <Navbar>
         <Search onSearch={setCity} />
       </Navbar>
-      {weatherData ? <WeatherDisplay weatherData={weatherData} city={city} /> : error}
+      {weatherData && <WeatherDisplay weatherData={weatherData} city={city} />}
+      {error &&
+        <div className='error-display'>
+          <div className='error-title'>
+            <FontAwesomeIcon className='error-icon' icon={faTriangleExclamation} />
+            <h1>ERROR</h1>
+          </div>
+          <p>{error}</p>
+        </div>
+      }
     </div>
   );
 
