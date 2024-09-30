@@ -89,3 +89,11 @@
 .info-item-caption p {
     font-weight: bold;
 }
+
+.location-icon.day {
+    color: rgb(5, 5, 84);
+}
+
+.location-icon.night {
+    color: white;
+}

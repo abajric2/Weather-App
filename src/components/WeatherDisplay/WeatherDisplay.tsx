@@ -32,7 +32,7 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({ weatherData, city }) =>
                 <div className='location-container'>
                     <div className="location-info">
                         <h2 className="city-name">{city}</h2>
-                        <FontAwesomeIcon icon={faLocationDot} style={isDay ? { color: 'rgb(5, 5, 84)' } : { color: "#ffffff" }} className="location-icon" />
+                        <FontAwesomeIcon icon={faLocationDot} className={`location-icon ${isDay ? 'day' : 'night'}`} />
                     </div>
                     <p className='weather-description'>{weatherData.description}</p>
                 </div>
