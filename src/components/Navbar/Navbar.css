@@ -1,0 +1,25 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #003044;
+    color: white;
+  }
+  
+  .hamburger-menu {
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .search-container {
+    flex-grow: 1; 
+    display: flex;
+    justify-content: center; 
+    margin-left: 0;
+    margin-right: 20px; 
+  }
+  

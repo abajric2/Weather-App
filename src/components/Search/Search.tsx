@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import './Search.css'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { SearchProps } from '../../interfaces/SearchProps';
 
-const Search: React.FC<{ onSearch: (city: string) => void }> = ({ onSearch }) => {
+const Search: React.FC<SearchProps> = ({ onSearch }) => {
     const [inputValue, setInputValue] = useState<string>('');
 
     const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {

@@ -4,6 +4,7 @@ import { WeatherData } from './interfaces/WeatherData';
 import Search from './components/Search/Search';
 import { fetchWeatherData } from './api/weatherApi';
 import WeatherDisplay from './components/WeatherDisplay/WeatherDisplay';
+import Navbar from './components/Navbar/Navbar';
 
 function App() {
   const [city, setCity] = useState<string>('Sarajevo');
@@ -16,32 +17,27 @@ function App() {
         try {
           const data = await fetchWeatherData(city);
           setWeatherData(data);
-          console.log(city)
           setError(null)
         } catch (error) {
-          const errorMessage = error instanceof Error ? error.message : 'Error: An unknown error occurred';
+          const errorMessage = error instanceof Error ? error.message : 'ERROR: An unknown error occurred';
           setWeatherData(null);
           setError(errorMessage);
         }
       }
     }
+
     fetchWeather();
   }, [city])
 
   return (
     <div className="app-container">
-      <nav className="navbar">
-        <button className="hamburger-menu" aria-label="Open menu">
-          ☰
-        </button>
-        <div className="search-container">
-          <Search onSearch={setCity} />
-        </div>
-      </nav>
-      {weatherData && <WeatherDisplay weatherData={weatherData} city={city}/>}
+      <Navbar>
+        <Search onSearch={setCity} />
+      </Navbar>
+      {weatherData ? <WeatherDisplay weatherData={weatherData} city={city} /> : error}
     </div>
   );
-  
+
 }
 
 export default App;
