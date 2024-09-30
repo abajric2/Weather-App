@@ -21,6 +21,15 @@
   margin-right: 10px;
 }
 
-.no-results {
+.result-info {
   margin: 0 auto;
+}
+
+.loader {
+  display: block;
+  margin: 200px auto 0 auto;
+}
+
+.loader p {
+  text-align: center;
 }
