@@ -9,6 +9,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTriangleExclamation, faFrown } from '@fortawesome/free-solid-svg-icons';
 import { MoonLoader } from 'react-spinners';
 import FavoritesList from './components/FavoritesList/FavoritesList';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const [city, setCity] = useState<string>('Sarajevo');
@@ -49,8 +51,10 @@ function App() {
   const addToFavorites = (city: string) => {
     setFavoriteCities((prevFavorites) => {
       if (!prevFavorites.some(favCity => favCity.toLowerCase() === city.toLowerCase())) {
+        toast.success(`"${city}" added to favorite cities list!`);
         return [...prevFavorites, city];
       }
+      toast.info(`"${city}" is already in favorite cities list!`);
       return prevFavorites
     });
   };
@@ -95,6 +99,7 @@ function App() {
           <p>{error}</p>
         </div>
       )}
+      <ToastContainer />
     </div>
   );
 

@@ -3,10 +3,14 @@ import { WeatherInfoProps } from '../../interfaces/props/WeatherInfoProps';
 import './WeatherInfo.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot, faDroplet, faEye, faWind, faTachometerAlt, faCloud, faCompass } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
 import BackgroundVideo from '../BackgroundVideo/BackgroundVideo';
 
 const WeatherInfo: React.FC<WeatherInfoProps> = ({ weatherData, city, addToFavorites }) => {
     const [isDay, setIsDay] = useState(false);
+    const [isHovered, setIsHovered] = useState(false); 
+
     const weatherInfoItems = [
         { icon: faDroplet, label: 'Humidity', value: `${weatherData.humidity}%` },
         { icon: faEye, label: 'Visibility', value: `${weatherData.visibility / 1000} km` },
@@ -28,7 +32,6 @@ const WeatherInfo: React.FC<WeatherInfoProps> = ({ weatherData, city, addToFavor
     return (
         <div className={`weather-display ${isDay ? 'day' : 'night'}`}>
             <BackgroundVideo isDay={isDay} />
-            <button className='add-to-favorites' onClick={() => addToFavorites(city)}>ADD TO FAVORITES</button>
             <div className='main-info-container'>
                 <div className='location-container'>
                     <div className="location-info">
@@ -54,7 +57,15 @@ const WeatherInfo: React.FC<WeatherInfoProps> = ({ weatherData, city, addToFavor
                         </div>
                         <p>{item.value}</p>
                     </div>))}
-            </div>
+            </div>    
+            <FontAwesomeIcon
+                icon={isHovered ? faHeartSolid : faHeartRegular}
+                className='add-to-favorites'
+                title='Add to favorite cities'
+                onClick={() => addToFavorites(city)}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+            />
         </div>
     );
 }
