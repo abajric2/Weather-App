@@ -3,7 +3,7 @@ import './App.css';
 import { WeatherData } from './interfaces/WeatherData';
 import Search from './components/Search/Search';
 import { fetchWeatherData } from './api/weatherApi';
-import WeatherDisplay from './components/WeatherDisplay/WeatherInfo';
+import WeatherInfo from './components/WeatherInfo/WeatherInfo';
 import Navbar from './components/Navbar/Navbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTriangleExclamation, faFrown } from '@fortawesome/free-solid-svg-icons';
@@ -13,7 +13,7 @@ function App() {
   const [city, setCity] = useState<string>('Sarajevo');
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [error, setError] = useState<string | null>(null)
-  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [isLoading, setIsLoading] = useState<boolean>(true)
 
   useEffect(() => {
     const fetchWeather = async () => {
@@ -49,7 +49,7 @@ function App() {
       )}
       {!isLoading && !error && (
         weatherData ?
-          <WeatherDisplay weatherData={weatherData} city={city} /> :
+          <WeatherInfo weatherData={weatherData} city={city} /> :
           <div className="no-result-info">
             <FontAwesomeIcon icon={faFrown} className="no-result-icon" />
             <h1>No results for "{city}"</h1>
