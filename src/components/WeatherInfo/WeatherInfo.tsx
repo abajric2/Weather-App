@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot, faDroplet, faEye, faWind, faTachometerAlt, faCloud, faCompass } from '@fortawesome/free-solid-svg-icons';
 import BackgroundVideo from '../BackgroundVideo/BackgroundVideo';
 
-const WeatherInfo: React.FC<WeatherInfoProps> = ({ weatherData, city }) => {
+const WeatherInfo: React.FC<WeatherInfoProps> = ({ weatherData, city, addToFavorites }) => {
     const [isDay, setIsDay] = useState(false);
     const weatherInfoItems = [
         { icon: faDroplet, label: 'Humidity', value: `${weatherData.humidity}%` },
@@ -28,6 +28,7 @@ const WeatherInfo: React.FC<WeatherInfoProps> = ({ weatherData, city }) => {
     return (
         <div className={`weather-display ${isDay ? 'day' : 'night'}`}>
             <BackgroundVideo isDay={isDay} />
+            <button onClick={() => addToFavorites(city)}>ADD TO FAVORITES</button>
             <div className='main-info-container'>
                 <div className='location-container'>
                     <div className="location-info">

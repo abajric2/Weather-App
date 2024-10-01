@@ -14,6 +14,7 @@ function App() {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [error, setError] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [favoriteCities, setFavoriteCities] = useState<string[]>([]);
 
   useEffect(() => {
     const fetchWeather = async () => {
@@ -36,6 +37,15 @@ function App() {
     fetchWeather();
   }, [city]);
 
+  const addToFavorites = (city: string) => {
+    setFavoriteCities((prevFavorites) => {
+      if (!prevFavorites.some(favCity => favCity.toLowerCase() === city.toLowerCase())) {
+        return [...prevFavorites, city];
+      }
+      return prevFavorites
+    });
+  };
+
   return (
     <div className="app-container">
       <Navbar>
@@ -49,7 +59,7 @@ function App() {
       )}
       {!isLoading && !error && (
         weatherData ?
-          <WeatherInfo weatherData={weatherData} city={city} /> :
+          <WeatherInfo weatherData={weatherData} city={city} addToFavorites={addToFavorites} /> :
           <div className="no-result-info">
             <FontAwesomeIcon icon={faFrown} className="no-result-icon" />
             <h1>No results for "{city}"</h1>
@@ -64,6 +74,12 @@ function App() {
           <p>{error}</p>
         </div>
       )}
+      <div>
+        <p>Favorites</p>
+        {favoriteCities.map((item, index) => (
+          <p key={index}>{item}</p>
+        ))}
+      </div>
     </div>
   );
 

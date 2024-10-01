@@ -2,5 +2,6 @@ import { WeatherData } from "../WeatherData";
 
 export interface WeatherInfoProps {
     weatherData: WeatherData,
-    city: string
+    city: string,
+    addToFavorites: (city: string) => void,
 }
