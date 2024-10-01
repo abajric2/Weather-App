@@ -1,0 +1,88 @@
+.favorite-cities-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100vh;
+    overflow-y: scroll;
+    background-color: #003044;
+    color: white;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+    transform: translateX(-100%);
+    scrollbar-width: thin;
+    direction: rtl;
+}
+
+.favorite-cities-menu h2 {
+    direction: ltr;
+}
+
+.favorite-cities-menu.show {
+    transform: translateX(0);
+}
+
+.city-item {
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.city-item p {
+    padding-left: 10px;
+}
+
+.city-item:hover {
+    background-color: rgba(255, 255, 255, 0.155);
+}
+
+.cities-list {
+    direction: ltr;
+    padding: 0 10px;
+}
+
+.divider {
+    border: 1px solid white;
+}
+
+.close-button {
+    color: white;
+    cursor: pointer;
+    margin: 10px;
+    border-radius: 10px;
+    width: 30px;
+    height: 30px;
+}
+
+.close-button:hover {
+    background-color: rgba(255, 255, 255, 0.155);
+}
+
+.favorite-cities-title {
+    display: flex;
+    align-items: center;
+    direction: ltr;
+    padding: 0 10px;
+}
+
+.heart-icon {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.favorite-city-name {
+    display: flex;
+    align-items: center;
+}
+
+.favorite-city-location-icon {
+    margin-left: 10px;
+}
+
+.close-button-container {
+    display: block;
+    background-color: #003044;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 2000;
+}

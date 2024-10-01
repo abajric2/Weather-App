@@ -97,3 +97,8 @@
 .location-icon.night {
     color: white;
 }
+
+.add-to-favorites {
+    display: flex;
+    margin: 50px auto 0 auto;
+}

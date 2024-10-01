@@ -28,7 +28,7 @@ const WeatherInfo: React.FC<WeatherInfoProps> = ({ weatherData, city, addToFavor
     return (
         <div className={`weather-display ${isDay ? 'day' : 'night'}`}>
             <BackgroundVideo isDay={isDay} />
-            <button onClick={() => addToFavorites(city)}>ADD TO FAVORITES</button>
+            <button className='add-to-favorites' onClick={() => addToFavorites(city)}>ADD TO FAVORITES</button>
             <div className='main-info-container'>
                 <div className='location-container'>
                     <div className="location-info">

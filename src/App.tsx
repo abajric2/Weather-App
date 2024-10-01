@@ -8,12 +8,14 @@ import Navbar from './components/Navbar/Navbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTriangleExclamation, faFrown } from '@fortawesome/free-solid-svg-icons';
 import { MoonLoader } from 'react-spinners';
+import FavoritesList from './components/FavoritesList/FavoritesList';
 
 function App() {
   const [city, setCity] = useState<string>('Sarajevo');
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [error, setError] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
   const [favoriteCities, setFavoriteCities] = useState<string[]>(() => {
     const storedFavorites = localStorage.getItem('favoriteCities');
     return storedFavorites ? JSON.parse(storedFavorites) : [];
@@ -53,11 +55,22 @@ function App() {
     });
   };
 
+  const toggleMenu = () => {
+    setIsMenuOpen(prev => !prev);
+  };
+
   return (
     <div className="app-container">
-      <Navbar>
+      <Navbar toggleMenu={toggleMenu}>
         <Search onSearch={setCity} />
       </Navbar>
+      {isMenuOpen && (
+        <FavoritesList
+          favoriteCities={favoriteCities}
+          onClose={toggleMenu}
+          isMenuOpen={isMenuOpen}
+        />
+      )}
       {isLoading && (
         <div className="loader">
           <MoonLoader />
@@ -81,12 +94,6 @@ function App() {
           <p>{error}</p>
         </div>
       )}
-      <div>
-        <p>Favorites</p>
-        {favoriteCities.map((item, index) => (
-          <p key={index}>{item}</p>
-        ))}
-      </div>
     </div>
   );
 
