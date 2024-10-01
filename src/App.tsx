@@ -68,6 +68,7 @@ function App() {
         <FavoritesList
           favoriteCities={favoriteCities}
           onClose={toggleMenu}
+          onSelect={setCity}
           isMenuOpen={isMenuOpen}
         />
       )}
