@@ -14,7 +14,14 @@ function App() {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [error, setError] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(true)
-  const [favoriteCities, setFavoriteCities] = useState<string[]>([]);
+  const [favoriteCities, setFavoriteCities] = useState<string[]>(() => {
+    const storedFavorites = localStorage.getItem('favoriteCities');
+    return storedFavorites ? JSON.parse(storedFavorites) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem('favoriteCities', JSON.stringify(favoriteCities));
+  }, [favoriteCities]);
 
   useEffect(() => {
     const fetchWeather = async () => {
