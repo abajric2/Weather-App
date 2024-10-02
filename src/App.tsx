@@ -18,6 +18,7 @@ function App() {
   const [error, setError] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false)
+  const [isMenuVisible, setIsMenuVisible] = useState<boolean>(false);
   const [favoriteCities, setFavoriteCities] = useState<string[]>(() => {
     const storedFavorites = localStorage.getItem('favoriteCities');
     return storedFavorites ? JSON.parse(storedFavorites) : [];
@@ -60,6 +61,7 @@ function App() {
   };
 
   const toggleMenu = () => {
+    setIsMenuVisible(true);
     setIsMenuOpen(prev => !prev);
   };
 
@@ -68,14 +70,13 @@ function App() {
       <Navbar toggleMenu={toggleMenu}>
         <Search onSearch={setCity} />
       </Navbar>
-      {isMenuOpen && (
-        <FavoritesList
-          favoriteCities={favoriteCities}
-          onClose={toggleMenu}
-          onSelect={setCity}
-          isMenuOpen={isMenuOpen}
-        />
-      )}
+      {isMenuVisible && <FavoritesList
+        favoriteCities={favoriteCities}
+        onClose={toggleMenu}
+        onSelect={setCity}
+        isMenuOpen={isMenuOpen}
+      />
+      }
       {isLoading && (
         <div className="loader">
           <MoonLoader />

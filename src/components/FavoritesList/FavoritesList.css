@@ -1,3 +1,21 @@
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
 .favorite-cities-menu {
     position: fixed;
     top: 0;
@@ -8,7 +26,6 @@
     background-color: #003044;
     color: white;
     z-index: 1000;
-    transition: transform 0.3s ease;
     transform: translateX(-100%);
     scrollbar-width: thin;
     direction: rtl;
@@ -19,7 +36,11 @@
 }
 
 .favorite-cities-menu.show {
-    transform: translateX(0);
+    animation: slideIn 0.5s forwards;
+}
+
+.favorite-cities-menu.hide {
+    animation: slideOut 0.5s backwards; 
 }
 
 .city-item {

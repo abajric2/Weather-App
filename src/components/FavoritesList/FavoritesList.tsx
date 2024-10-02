@@ -6,7 +6,7 @@ import { faXmark, faHeart, faLocationDot } from '@fortawesome/free-solid-svg-ico
 
 const FavoritesList: React.FC<FavoritesListProps> = ({ favoriteCities, onClose, isMenuOpen, onSelect }) => {
     return (
-        <div className={`favorite-cities-menu ${isMenuOpen && 'show'}`}>
+        <div className={`favorite-cities-menu ${isMenuOpen ? 'show' : 'hide'}`}>
             <div className='close-button-container'>
                 <FontAwesomeIcon className='close-button' onClick={onClose} icon={faXmark} />
             </div>
