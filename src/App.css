@@ -63,3 +63,30 @@
   color: #333;
   font-size: 18px;
 }
+
+@media (max-width: 768px) {
+  .loader p {
+    font-size: 14px; /* Smaller font size */
+  }
+
+  .no-result-info h1 {
+    font-size: 20px; /* Smaller font size */
+  }
+
+  .error-title h1 {
+    font-size: 24px; /* Smaller font size */
+  }
+
+  .weather-info-grid {
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+  }
+  
+  .weather-display {
+    padding: 10px; /* Smaller padding */
+  }
+
+  .error-display {
+    width: 90%; /* Full width */
+    margin: 20px auto; /* Center it */
+  }
+}

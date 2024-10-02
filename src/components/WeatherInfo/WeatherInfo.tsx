@@ -43,7 +43,7 @@ const WeatherInfo: React.FC<WeatherInfoProps> = ({ weatherData, city, addToFavor
                 <div className='temperature-container'>
                     <div className="temperature-info">
                         <p className='current-temperature'>{Math.round(weatherData.temperature)}°C</p>
-                        <img src={`http://openweathermap.org/img/wn/${weatherData.icon}@2x.png`} alt="Weather icon" />
+                        <img className='current-temperature-icon' src={`http://openweathermap.org/img/wn/${weatherData.icon}@2x.png`} alt="Weather icon" />
                     </div>
                     <p className='feels-like'>feels like: {Math.round(weatherData.feelsLike)}°C</p>
                 </div>

@@ -100,13 +100,124 @@
 
 .add-to-favorites {
     font-size: 50px;
-    transition: color 0.3s ease, transform 0.3s ease; /* Glatka tranzicija */
+    transition: color 0.3s ease, transform 0.3s ease; 
     cursor: pointer;
     display: block;
-    margin: 20px auto; /* Da se centira ispod drugih elemenata */
+    margin: 20px auto; 
 }
 
 .add-to-favorites:hover {
-    color: red; /* Boja popunjenog srca */
-    transform: scale(1.1); /* Uvećanje na hover */
+    color: red; 
+    transform: scale(1.1);
+}
+@media (max-width: 520px) {
+    .weather-info-grid {
+        width: 70%;
+        gap: 10px; /* Smaller gap */
+    }
+    .location-container {
+        margin-right: 10px;
+    }
+    .current-temperature {
+        font-size: 32px; /* Smaller font size */
+    }
+
+    .info-item-icon {
+        font-size: 24px; /* Smaller icon */
+    }
+
+    .weather-description,
+    .feels-like {
+        font-size: 16px; /* Smaller font size */
+    }
+}
+@media (max-width: 1350px) {
+    .weather-info-grid {
+        width: 70%;
+        gap: 10px; /* Smaller gap */
+    }
+}
+
+@media (max-width: 768px) {
+    .weather-info-grid {
+        grid-template-columns: repeat(2, 1fr); /* Two columns on smaller screens */
+        width: 80%;
+        gap: 10px; /* Smaller gap */
+    }
+    .location-container {
+        margin-right: 150px;
+    }
+    .current-temperature {
+        font-size: 32px; /* Smaller font size */
+    }
+
+    .info-item-icon {
+        font-size: 24px; /* Smaller icon */
+    }
+
+    .weather-description,
+    .feels-like {
+        font-size: 16px; /* Smaller font size */
+    }
+}
+@media (max-width: 550px) {
+    .weather-info-grid {
+        width: 80%;
+        gap: 10px; /* Smaller gap */
+    }
+    .location-container {
+        margin-right: 100px;
+    }
+    .current-temperature {
+        font-size: 32px; /* Smaller font size */
+    }
+    .current-temperature-icon {
+        width: 80px;
+        height: 80px;
+    }
+    .city-name,
+    .location-icon {
+        font-size: 32px;
+    }
+    .info-item-icon {
+        font-size: 24px; /* Smaller icon */
+    }
+
+    .weather-description,
+    .feels-like {
+        font-size: 16px; /* Smaller font size */
+    }
+}
+@media (max-width: 430px) {
+    .weather-info-grid {
+        width: 65%;
+        grid-template-columns: repeat(1, 1fr); /* Two columns on smaller screens */
+        gap: 10px; /* Smaller gap */
+    }
+    .location-container {
+        margin-right: 50px;
+    }
+    .current-temperature {
+        font-size: 25px; /* Smaller font size */
+    }
+    .current-temperature-icon {
+        width: 65px;
+        height: 65px;
+    }
+    .city-name,
+    .location-icon {
+        font-size: 28px;
+    }
+    .info-item-icon {
+        font-size: 20px; /* Smaller icon */
+    }
+
+    .weather-description,
+    .feels-like {
+        font-size: 14px; /* Smaller font size */
+    }
+    .add-to-favorites {
+        width: 40px;
+        height: 40px;
+    }
 }
