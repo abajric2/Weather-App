@@ -6,6 +6,7 @@ import { faLocationDot, faDroplet, faEye, faWind, faTachometerAlt, faCloud, faCo
 import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
 import BackgroundVideo from '../BackgroundVideo/BackgroundVideo';
+import { WeatherData } from '../../interfaces/WeatherData';
 
 const WeatherInfo: React.FC<WeatherInfoProps> = ({ weatherData, city, favoriteCities, addToFavorites }) => {
     const [isDay, setIsDay] = useState(false);
@@ -36,31 +37,21 @@ const WeatherInfo: React.FC<WeatherInfoProps> = ({ weatherData, city, favoriteCi
     return (
         <div className={`weather-display ${isDay ? 'day' : 'night'}`}>
             <BackgroundVideo isDay={isDay} />
-            <div className='main-info-container'>
-                <div className='location-container'>
-                    <div className="location-info">
-                        <h2 className="city-name">{city}</h2>
-                        <FontAwesomeIcon icon={faLocationDot} className={`location-icon ${isDay ? 'day' : 'night'}`} />
-                    </div>
-                    <p className='weather-description'>{weatherData.description}</p>
-                </div>
-                <div className='temperature-container'>
-                    <div className="temperature-info">
-                        <p className='current-temperature'>{Math.round(weatherData.temperature)}°C</p>
-                        <img className='current-temperature-icon' src={`http://openweathermap.org/img/wn/${weatherData.icon}@2x.png`} alt="Weather icon" />
-                    </div>
-                    <p className='feels-like'>feels like: {Math.round(weatherData.feelsLike)}°C</p>
-                </div>
-            </div>
+            <MainWeatherInfo
+                city={city}
+                weatherData={weatherData}
+                isDay={isDay}
+            />
             <div className='weather-info-grid'>
                 {weatherInfoItems.map((item, index) => (
-                    <div key={index} className={`weather-info-item ${isDay ? 'day' : 'night'}`}>
-                        <div className='info-item-caption'>
-                            <FontAwesomeIcon icon={item.icon} className='info-item-icon' />
-                            <p>{item.label}</p>
-                        </div>
-                        <p>{item.value}</p>
-                    </div>))}
+                    <WeatherInfoItem
+                        key={index}
+                        icon={item.icon}
+                        label={item.label}
+                        value={item.value}
+                        isDay={isDay}
+                    />
+                ))}
             </div>
             <FontAwesomeIcon
                 icon={isHovered || isFavoriteCity()
@@ -78,5 +69,57 @@ const WeatherInfo: React.FC<WeatherInfoProps> = ({ weatherData, city, favoriteCi
         </div>
     );
 }
+
+interface MainWeatherInfoProps {
+    city: string;
+    weatherData: WeatherData;
+    isDay: boolean;
+}
+
+const MainWeatherInfo: React.FC<MainWeatherInfoProps> = ({ city, weatherData, isDay }) => (
+    <div className='main-info-container'>
+        <div className='location-container'>
+            <div className="location-info">
+                <h2 className="city-name">{city}</h2>
+                <FontAwesomeIcon
+                    icon={faLocationDot}
+                    className={`location-icon ${isDay ? 'day' : 'night'}`}
+                />
+            </div>
+            <p className='weather-description'>{weatherData.description}</p>
+        </div>
+        <div className='temperature-container'>
+            <div className="temperature-info">
+                <p className='current-temperature'>{Math.round(weatherData.temperature)}°C</p>
+                <img
+                    className='current-temperature-icon'
+                    src={`http://openweathermap.org/img/wn/${weatherData.icon}@2x.png`}
+                    alt="Weather icon"
+                />
+            </div>
+            <p className='feels-like'>feels like: {Math.round(weatherData.feelsLike)}°C</p>
+        </div>
+    </div>
+);
+
+interface WeatherInfoItemProps {
+    icon: any;
+    label: string;
+    value: string;
+    isDay: boolean;
+}
+
+const WeatherInfoItem: React.FC<WeatherInfoItemProps> = ({ icon, label, value, isDay }) => (
+    <div className={`weather-info-item ${isDay ? 'day' : 'night'}`}>
+        <div className='info-item-caption'>
+            <FontAwesomeIcon
+                icon={icon}
+                className='info-item-icon'
+            />
+            <p>{label}</p>
+        </div>
+        <p>{value}</p>
+    </div>
+);
 
 export default WeatherInfo;
