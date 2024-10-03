@@ -90,7 +90,7 @@ function App() {
       )}
       {!isLoading && !error && (
         weatherData ?
-          <WeatherInfo weatherData={weatherData} city={city} addToFavorites={addToFavorites} /> :
+          <WeatherInfo weatherData={weatherData} city={city} favoriteCities={favoriteCities} addToFavorites={addToFavorites} /> :
           <div className="no-result-info">
             <FontAwesomeIcon icon={faFrown} className="no-result-icon" />
             <h1>No results for "{city}"</h1>

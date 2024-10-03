@@ -7,9 +7,9 @@ import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
 import BackgroundVideo from '../BackgroundVideo/BackgroundVideo';
 
-const WeatherInfo: React.FC<WeatherInfoProps> = ({ weatherData, city, addToFavorites }) => {
+const WeatherInfo: React.FC<WeatherInfoProps> = ({ weatherData, city, favoriteCities, addToFavorites }) => {
     const [isDay, setIsDay] = useState(false);
-    const [isHovered, setIsHovered] = useState(false); 
+    const [isHovered, setIsHovered] = useState(false);
 
     const weatherInfoItems = [
         { icon: faDroplet, label: 'Humidity', value: `${weatherData.humidity}%` },
@@ -19,6 +19,10 @@ const WeatherInfo: React.FC<WeatherInfoProps> = ({ weatherData, city, addToFavor
         { icon: faCloud, label: 'Cloudiness', value: `${weatherData.cloudiness}%` },
         { icon: faCompass, label: 'Wind direction', value: `${weatherData.windDirection}°` },
     ];
+
+    const isFavoriteCity = (): boolean => {
+        return favoriteCities.some(favCity => favCity.toLowerCase() === city.toLowerCase())
+    }
 
     useEffect(() => {
         const isDayTime = (): boolean => {
@@ -57,9 +61,14 @@ const WeatherInfo: React.FC<WeatherInfoProps> = ({ weatherData, city, addToFavor
                         </div>
                         <p>{item.value}</p>
                     </div>))}
-            </div>    
+            </div>
             <FontAwesomeIcon
-                icon={isHovered ? faHeartSolid : faHeartRegular}
+                icon={isHovered || isFavoriteCity()
+                    ? faHeartSolid
+                    : faHeartRegular}
+                style={isHovered || isFavoriteCity()
+                    ? { color: 'red' }
+                    : {}}
                 className='add-to-favorites'
                 title='Add to favorite cities'
                 onClick={() => addToFavorites(city)}
