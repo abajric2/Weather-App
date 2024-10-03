@@ -1,7 +1,7 @@
 .navbar {
     display: flex;
     align-items: center;
-    padding: 10px;
+    padding: 10px 0;
     background-color: #003044;
     color: white;
     position: sticky;
@@ -12,6 +12,7 @@
 
 .hamburger-menu {
     font-size: 24px;
+    padding-left: 10px;
     background: none;
     border: none;
     color: white;

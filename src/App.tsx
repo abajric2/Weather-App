@@ -65,15 +65,20 @@ function App() {
     setIsMenuOpen(prev => !prev);
   };
 
+  const currentCityUpdate = (city: string) => {
+    setCity(city);
+    setIsMenuOpen(false);
+  }
+
   return (
     <div className="app-container">
       <Navbar toggleMenu={toggleMenu}>
-        <Search onSearch={setCity} />
+        <Search onSearch={currentCityUpdate} />
       </Navbar>
       {isMenuVisible && <FavoritesList
         favoriteCities={favoriteCities}
         onClose={toggleMenu}
-        onSelect={setCity}
+        onSelect={currentCityUpdate}
         isMenuOpen={isMenuOpen}
       />
       }
