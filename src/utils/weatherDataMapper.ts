@@ -1,6 +1,7 @@
+import { ApiWeatherDataResponse } from "../interfaces/ApiWeatherDataResponse";
 import { WeatherData } from "../interfaces/WeatherData";
 
-export const mapWeatherData = (data: any): WeatherData => ({
+export const mapWeatherData = (data: ApiWeatherDataResponse): WeatherData => ({
     temperature: data.main.temp,
     feelsLike: data.main.feels_like,
     humidity: data.main.humidity,
