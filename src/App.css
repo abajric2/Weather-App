@@ -66,27 +66,19 @@
 
 @media (max-width: 768px) {
   .loader p {
-    font-size: 14px; /* Smaller font size */
+    font-size: 14px; 
   }
 
   .no-result-info h1 {
-    font-size: 20px; /* Smaller font size */
+    font-size: 20px; 
   }
 
   .error-title h1 {
-    font-size: 24px; /* Smaller font size */
-  }
-
-  .weather-info-grid {
-    grid-template-columns: repeat(2, 1fr); /* Two columns */
-  }
-  
-  .weather-display {
-    padding: 10px; /* Smaller padding */
+    font-size: 24px; 
   }
 
   .error-display {
-    width: 90%; /* Full width */
-    margin: 20px auto; /* Center it */
+    width: 90%; 
+    margin: 20px auto; 
   }
 }

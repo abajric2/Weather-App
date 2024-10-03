@@ -2,6 +2,7 @@
     from {
         transform: translateX(-100%);
     }
+
     to {
         transform: translateX(0);
     }
@@ -11,6 +12,7 @@
     from {
         transform: translateX(0);
     }
+
     to {
         transform: translateX(-100%);
     }
@@ -21,7 +23,7 @@
     top: 0;
     left: 0;
     width: 300px;
-    height: 100vh;
+    height: 100%;
     overflow-y: scroll;
     background-color: #003044;
     color: white;
@@ -40,7 +42,7 @@
 }
 
 .favorite-cities-menu.hide {
-    animation: slideOut 0.5s backwards; 
+    animation: slideOut 0.5s backwards;
 }
 
 .city-item {
@@ -106,4 +108,10 @@
     top: 0;
     left: 0;
     z-index: 2000;
+}
+
+@media (max-width: 1250px) {
+    .favorite-cities-menu {
+        width: 100%;
+    }
 }
