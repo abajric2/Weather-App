@@ -12,7 +12,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import NoResultsInfo from './components/NoResultsInfo/NoResultsInfo';
 import ErrorDisplay from './components/ErrorDisplay/ErrorDisplay';
 
-function App() {
+const App: React.FC = () => {
   const [city, setCity] = useState<string>('Sarajevo');
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [error, setError] = useState<string | null>(null)
