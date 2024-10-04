@@ -7,6 +7,7 @@ import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
 import BackgroundVideo from '../BackgroundVideo/BackgroundVideo';
 import { WeatherData } from '../../interfaces/WeatherData';
+import classNames from 'classnames';
 
 const WeatherInfo: React.FC<WeatherInfoProps> = ({ weatherData, city, favoriteCities, addToFavorites }) => {
     const [isDay, setIsDay] = useState(false);
@@ -35,7 +36,7 @@ const WeatherInfo: React.FC<WeatherInfoProps> = ({ weatherData, city, favoriteCi
     }, [weatherData]);
 
     return (
-        <div className={`weather-display ${isDay ? 'day' : 'night'}`}>
+        <div className={classNames('weather-display', { 'day': isDay, 'night': !isDay })}>
             <BackgroundVideo isDay={isDay} />
             <MainWeatherInfo
                 city={city}
@@ -83,7 +84,7 @@ const MainWeatherInfo: React.FC<MainWeatherInfoProps> = ({ city, weatherData, is
                 <h2 className="city-name">{city}</h2>
                 <FontAwesomeIcon
                     icon={faLocationDot}
-                    className={`location-icon ${isDay ? 'day' : 'night'}`}
+                    className={classNames('location-icon', { 'day': isDay, 'night': !isDay })}
                 />
             </div>
             <p className='weather-description'>{weatherData.description}</p>
@@ -110,7 +111,7 @@ interface WeatherInfoItemProps {
 }
 
 const WeatherInfoItem: React.FC<WeatherInfoItemProps> = ({ icon, label, value, isDay }) => (
-    <div className={`weather-info-item ${isDay ? 'day' : 'night'}`}>
+    <div className={classNames('weather-info-item', { 'day': isDay, 'night': !isDay })}>
         <div className='info-item-caption'>
             <FontAwesomeIcon
                 icon={icon}

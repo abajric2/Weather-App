@@ -3,10 +3,11 @@ import './FavoritesList.css'
 import { FavoritesListProps } from '../../interfaces/props/FavoritesListProps'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark, faHeart, faLocationDot } from '@fortawesome/free-solid-svg-icons'
+import classNames from 'classnames';
 
 const FavoritesList: React.FC<FavoritesListProps> = ({ favoriteCities, onClose, isMenuOpen, onSelect }) => {
     return (
-        <div className={`favorite-cities-menu ${isMenuOpen ? 'show' : 'hide'}`}>
+        <div className={classNames('favorite-cities-menu', { 'show': isMenuOpen, 'hide': !isMenuOpen })}>
             <div className='close-button-container'>
                 <FontAwesomeIcon
                     className='close-button'
