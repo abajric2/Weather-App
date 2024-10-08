@@ -70,22 +70,21 @@ const App: React.FC = () => {
     setIsMenuOpen(false);
   }
 
+  const renderFavoritesList = () => (
+    <FavoritesList
+      favoriteCities={favoriteCities}
+      onClose={toggleMenu}
+      onSelect={currentCityUpdate}
+      isMenuOpen={isMenuOpen}
+    />
+  );
+
   return (
     <div className="app-container">
       <Navbar toggleMenu={toggleMenu}>
         <Search onSearch={currentCityUpdate} />
       </Navbar>
-const renderFavoritesList = () => (
-  <FavoritesList
-    favoriteCities={favoriteCities}
-    onClose={toggleMenu}
-    onSelect={currentCityUpdate}
-    isMenuOpen={isMenuOpen}
-  />
-);
-
-{isMenuVisible && renderFavoritesList()}```
-      }
+      {isMenuVisible && renderFavoritesList()}
       {isLoading ? (
         <div className="loader">
           <MoonLoader />
