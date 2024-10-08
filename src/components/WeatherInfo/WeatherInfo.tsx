@@ -27,9 +27,9 @@ const WeatherInfo: React.FC<WeatherInfoProps> = ({ weatherData, city, favoriteCi
     }
 
     useEffect(() => {
-    const currentTime = Math.floor(Date.now() / 1000);
-    setIsDay(currentTime >= weatherData.sunrise && currentTime < weatherData.sunset);
-  }, [weatherData]);
+        const currentTime = Math.floor(Date.now() / 1000);
+        setIsDay(currentTime >= weatherData.sunrise && currentTime < weatherData.sunset);
+    }, [weatherData]);
 
     return (
         <div className={classNames('weather-display', { 'day': isDay, 'night': !isDay })}>
