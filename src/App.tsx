@@ -75,12 +75,16 @@ const App: React.FC = () => {
       <Navbar toggleMenu={toggleMenu}>
         <Search onSearch={currentCityUpdate} />
       </Navbar>
-      {isMenuVisible && <FavoritesList
-        favoriteCities={favoriteCities}
-        onClose={toggleMenu}
-        onSelect={currentCityUpdate}
-        isMenuOpen={isMenuOpen}
-      />
+const renderFavoritesList = () => (
+  <FavoritesList
+    favoriteCities={favoriteCities}
+    onClose={toggleMenu}
+    onSelect={currentCityUpdate}
+    isMenuOpen={isMenuOpen}
+  />
+);
+
+{isMenuVisible && renderFavoritesList()}```
       }
       {isLoading ? (
         <div className="loader">
