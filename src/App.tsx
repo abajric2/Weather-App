@@ -82,25 +82,26 @@ const App: React.FC = () => {
         isMenuOpen={isMenuOpen}
       />
       }
-      {isLoading && (
-        <div className="loader">
-          <MoonLoader />
-          <p>Loading...</p>
-        </div>
-      )}
-      {!isLoading && !error && (
-        weatherData ?
-          <WeatherInfo
-            weatherData={weatherData}
-            city={city}
-            favoriteCities={favoriteCities}
-            addToFavorites={addToFavorites}
-          /> :
-          <NoResultsInfo city={city} />
-      )}
-      {!isLoading && error && (
-        <ErrorDisplay errorMessage={error} />
-      )}
+   {isLoading ? (
+  <div className="loader">
+    <MoonLoader />
+    <p>Loading...</p>
+  </div>
+) : error ? (
+  <ErrorDisplay errorMessage={error} />
+) : (
+  weatherData ? (
+    <WeatherInfo
+      weatherData={weatherData}
+      city={city}
+      favoriteCities={favoriteCities}
+      addToFavorites={addToFavorites}
+    />
+  ) : (
+    <NoResultsInfo city={city} />
+  )
+)}
+
       <ToastContainer />
     </div>
   );
