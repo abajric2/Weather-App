@@ -16,7 +16,7 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
     }
 
     return (
-        <form className="search-form" onSubmit={handleSearch}>
+        <div className="search-form" onSubmit={handleSearch}>
             <input
                 type='text'
                 className="search-input"
@@ -27,7 +27,7 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
             <button type='submit' className="search-button">
                 <FontAwesomeIcon icon={faSearch} />
             </button>
-        </form>
+        </div>
     );
 }
 
