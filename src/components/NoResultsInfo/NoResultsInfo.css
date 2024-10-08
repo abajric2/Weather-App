@@ -4,7 +4,8 @@
 }
 
 .no-result-icon {
-    font-size: 50px;
+    width: 50px;
+    height: 50px;
     color: #ccc;
 }
 

@@ -88,7 +88,8 @@
 }
 
 .heart-icon {
-    font-size: 24px;
+    width: 24px;
+    height: 24px;
     margin-right: 10px;
 }
 
@@ -98,6 +99,8 @@
 }
 
 .favorite-city-location-icon {
+    width: 20px;
+    height: 20px;
     margin-left: 10px;
 }
 

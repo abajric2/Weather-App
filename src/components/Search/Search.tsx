@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import './Search.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { SearchProps } from '../../interfaces/props/SearchProps';
 
 const Search: React.FC<SearchProps> = ({ onSearch }) => {
@@ -35,7 +33,11 @@ const Search: React.FC<SearchProps> = ({ onSearch }) => {
                 className="search-button"
                 onClick={handleSearch}
             >
-                <FontAwesomeIcon icon={faSearch} />
+                <img
+                    src="/icons/search-icon.svg"
+                    alt="Search Icon"
+                    className="search-icon"
+                />
             </button>
         </div>
     );

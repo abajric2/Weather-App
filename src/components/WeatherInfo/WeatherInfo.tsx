@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { WeatherInfoProps } from '../../interfaces/props/WeatherInfoProps';
 import './WeatherInfo.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLocationDot, faDroplet, faEye, faWind, faTachometerAlt, faCloud, faCompass } from '@fortawesome/free-solid-svg-icons';
-import { faHeart as faHeartSolid } from '@fortawesome/free-solid-svg-icons';
-import { faHeart as faHeartRegular } from '@fortawesome/free-regular-svg-icons';
 import BackgroundVideo from '../BackgroundVideo/BackgroundVideo';
 import { WeatherData } from '../../interfaces/WeatherData';
 import classNames from 'classnames';
@@ -14,12 +10,12 @@ const WeatherInfo: React.FC<WeatherInfoProps> = ({ weatherData, city, favoriteCi
     const [isHovered, setIsHovered] = useState(false);
 
     const weatherInfoItems = [
-        { icon: faDroplet, label: 'Humidity', value: `${weatherData.humidity}%` },
-        { icon: faEye, label: 'Visibility', value: `${weatherData.visibility / 1000} km` },
-        { icon: faWind, label: 'Wind speed', value: `${Math.round(weatherData.windSpeed)} km/h` },
-        { icon: faTachometerAlt, label: 'Pressure', value: `${weatherData.pressure} hPa` },
-        { icon: faCloud, label: 'Cloudiness', value: `${weatherData.cloudiness}%` },
-        { icon: faCompass, label: 'Wind direction', value: `${weatherData.windDirection}°` },
+        { icon: (isDay ? '/icons/droplet-day-icon.svg' : '/icons/droplet-night-icon.svg'), label: 'Humidity', value: `${weatherData.humidity}%` },
+        { icon: (isDay ? '/icons/eye-day-icon.svg' : '/icons/eye-night-icon.svg'), label: 'Visibility', value: `${weatherData.visibility / 1000} km` },
+        { icon: (isDay ? '/icons/wind-day-icon.svg' : '/icons/wind-night-icon.svg'), label: 'Wind speed', value: `${Math.round(weatherData.windSpeed)} km/h` },
+        { icon: (isDay ? '/icons/tachometer-day-icon.svg' : '/icons/tachometer-night-icon.svg'), label: 'Pressure', value: `${weatherData.pressure} hPa` },
+        { icon: (isDay ? '/icons/cloud-day-icon.svg' : '/icons/cloud-night-icon.svg'), label: 'Cloudiness', value: `${weatherData.cloudiness}%` },
+        { icon: (isDay ? '/icons/compass-day-icon.svg' : '/icons/compass-night-icon.svg'), label: 'Wind direction', value: `${weatherData.windDirection}°` },
     ];
 
     const isFavoriteCity = (): boolean => {
@@ -50,13 +46,15 @@ const WeatherInfo: React.FC<WeatherInfoProps> = ({ weatherData, city, favoriteCi
                     />
                 ))}
             </div>
-            <FontAwesomeIcon
-                icon={isHovered || isFavoriteCity()
-                    ? faHeartSolid
-                    : faHeartRegular}
-                style={isHovered || isFavoriteCity()
-                    ? { color: 'red' }
-                    : {}}
+            <img
+                src={isHovered || isFavoriteCity()
+                    ? '/icons/filled-heart-red-icon.svg'
+                    : (isDay
+                        ? '/icons/empty-heart-day-icon.svg'
+                        : '/icons/empty-heart-night-icon.svg'
+                    )
+                }
+                alt="Heart Icon"
                 className='add-to-favorites'
                 title='Add to favorite cities'
                 onClick={() => addToFavorites(city)}
@@ -78,9 +76,10 @@ const MainWeatherInfo: React.FC<MainWeatherInfoProps> = ({ city, weatherData, is
         <div className='location-container'>
             <div className="location-info">
                 <h2 className="city-name">{city}</h2>
-                <FontAwesomeIcon
-                    icon={faLocationDot}
-                    className={classNames('location-icon', { 'day': isDay, 'night': !isDay })}
+                <img
+                    src={isDay ? `/icons/location-dot-day-icon.svg` : `/icons/location-dot-icon.svg`}
+                    alt="Location Dot Icon"
+                    className='location-icon'
                 />
             </div>
             <p className='weather-description'>{weatherData.description}</p>
@@ -109,9 +108,10 @@ interface WeatherInfoItemProps {
 const WeatherInfoItem: React.FC<WeatherInfoItemProps> = ({ icon, label, value, isDay }) => (
     <div className={classNames('weather-info-item', { 'day': isDay, 'night': !isDay })}>
         <div className='info-item-caption'>
-            <FontAwesomeIcon
-                icon={icon}
+            <img
                 className='info-item-icon'
+                src={icon}
+                alt="Weather data icon"
             />
             <p>{label}</p>
         </div>

@@ -29,10 +29,15 @@
     justify-content: center;
 }
 
-.location-icon,
 .city-name {
     margin-right: 10px;
     font-size: 40px;
+}
+
+.location-icon {
+    margin-right: 10px;
+    width: 40px;
+    height: 40px;
 }
 
 .location-container,
@@ -82,7 +87,8 @@
 }
 
 .info-item-icon {
-    font-size: 30px;
+    width: 30px;
+    height: 30px;
     margin: 0 10px 5px 0;
 }
 
@@ -90,16 +96,9 @@
     font-weight: bold;
 }
 
-.location-icon.day {
-    color: rgb(5, 5, 84);
-}
-
-.location-icon.night {
-    color: white;
-}
-
 .add-to-favorites {
-    font-size: 50px;
+    height: 50px;
+    width: 50px;
     transition: color 0.3s ease, transform 0.3s ease;
     cursor: pointer;
     display: block;
@@ -139,7 +138,8 @@
     }
 
     .info-item-icon {
-        font-size: 24px;
+        width: 24px;
+        height: 24px;
     }
 
     .weather-description,
@@ -166,13 +166,13 @@
         height: 80px;
     }
 
-    .city-name,
-    .location-icon {
+    .city-name {
         font-size: 32px;
     }
 
-    .info-item-icon {
-        font-size: 24px;
+    .location-icon {
+        width: 32px;
+        height: 32px;
     }
 
     .weather-description,
@@ -200,13 +200,18 @@
         height: 65px;
     }
 
-    .city-name,
-    .location-icon {
+    .city-name {
         font-size: 28px;
     }
 
+    .location-icon {
+        width: 28px;
+        height: 28px;
+    }
+
     .info-item-icon {
-        font-size: 20px;
+        width: 20px;
+        height: 20px;
     }
 
     .weather-description,

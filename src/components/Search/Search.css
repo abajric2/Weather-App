@@ -10,6 +10,7 @@
     padding: 10px;
     background-color: #f0f0f0;
     width: 100%;
+    height: 20px;
 }
 
 .search-button {
@@ -18,6 +19,7 @@
     border-radius: 0 20px 20px 0;
     cursor: pointer;
     padding: 10px 15px;
+    height: 40px;
 }
 
 .search-button:hover {
@@ -28,6 +30,11 @@
 .search-input:focus {
     outline: none;
     border: none;
+}
+
+.search-icon {
+    width: 15px;
+    height: 15px;
 }
 
 @media (max-width: 430px) {

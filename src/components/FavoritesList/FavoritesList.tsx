@@ -1,24 +1,24 @@
 import React from 'react'
 import './FavoritesList.css'
 import { FavoritesListProps } from '../../interfaces/props/FavoritesListProps'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faXmark, faHeart, faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import classNames from 'classnames';
 
 const FavoritesList: React.FC<FavoritesListProps> = ({ favoriteCities, onClose, isMenuOpen, onSelect }) => {
     return (
         <div className={classNames('favorite-cities-menu', { 'show': isMenuOpen, 'hide': !isMenuOpen })}>
             <div className='close-button-container'>
-                <FontAwesomeIcon
-                    className='close-button'
+                <img
+                    src="/icons/close-icon.svg"
+                    alt="Close Icon"
                     onClick={onClose}
-                    icon={faXmark}
+                    className="close-button"
                 />
             </div>
             <div className='favorite-cities-title'>
-                <FontAwesomeIcon
+                <img
+                    src="/icons/heart-icon.svg"
+                    alt="Heart Icon"
                     className='heart-icon'
-                    icon={faHeart}
                 />
                 <h2>Favorite Cities</h2>
             </div>
@@ -43,9 +43,10 @@ interface CityItemProps {
 const CityItem: React.FC<CityItemProps> = ({ city, onSelect }) => (
     <div className="city-item" onClick={() => onSelect(city)}>
         <div className='favorite-city-name'>
-            <FontAwesomeIcon
+            <img
+                src="/icons/location-dot-icon.svg"
+                alt="Location Dot Icon"
                 className='favorite-city-location-icon'
-                icon={faLocationDot}
             />
             <p>{city}</p>
         </div>

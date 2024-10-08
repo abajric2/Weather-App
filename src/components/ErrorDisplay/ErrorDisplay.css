@@ -16,8 +16,8 @@
 }
 
 .error-icon {
-    font-size: 40px;
-    color: red;
+    width: 40px;
+    height: 40px;
 }
 
 .error-title h1 {
