@@ -1,0 +1,43 @@
+.error-display {
+    text-align: center;
+    background-color: rgba(255, 0, 0, 0.1);
+    border: 2px solid red;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 50px auto;
+    width: 60%;
+}
+
+.error-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.error-icon {
+    width: 40px;
+    height: 40px;
+}
+
+.error-title h1 {
+    font-size: 32px;
+    color: red;
+}
+
+.error-display p {
+    color: #333;
+    font-size: 18px;
+}
+
+@media (max-width: 768px) {
+    .error-title h1 {
+        font-size: 24px;
+    }
+
+    .error-display {
+        width: 90%;
+        margin: 20px auto;
+        padding: 0px;
+    }
+}

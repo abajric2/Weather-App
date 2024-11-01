@@ -1,0 +1,34 @@
+.no-result-info {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.no-result-icon {
+    width: 50px;
+    height: 50px;
+    color: #ccc;
+}
+
+.no-result-info h1 {
+    font-size: 24px;
+    color: #555;
+}
+
+@media (max-width: 768px) {
+    .loader p {
+        font-size: 14px;
+    }
+
+    .no-result-info h1 {
+        font-size: 20px;
+    }
+
+    .error-title h1 {
+        font-size: 24px;
+    }
+
+    .error-display {
+        width: 90%;
+        margin: 20px auto;
+    }
+}
